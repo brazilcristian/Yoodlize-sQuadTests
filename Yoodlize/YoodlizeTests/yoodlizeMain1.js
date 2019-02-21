@@ -1,4 +1,6 @@
 var yoodlizePageObjects = {}
+
+/*
 var yoodlizelogin = (pageObject, email, password, item, startDate, endDate) => {
     pageObject
         .click('@yoodlizelogin')
@@ -9,10 +11,10 @@ var yoodlizelogin = (pageObject, email, password, item, startDate, endDate) => {
         .setValue('@inputPassword', password)
         .click('@submitBtn')
         .waitForElementNotPresent('@inputEmail')
-    //     .api.pause(15000)
-    // pageObject
+        //     .api.pause(15000)
+        // pageObject
         .waitForElementVisible('@inputText')
-    //     .click('@inputText')
+        //     .click('@inputText')
         .setValue('@inputText', item)
         .waitForElementVisible('@clickTitle')
         .click('@clickTitle')
@@ -22,23 +24,80 @@ var yoodlizelogin = (pageObject, email, password, item, startDate, endDate) => {
         .click('@endDate')
         .setValue('@endDate', endDate)
         .click('@btnRequest')
+*/
+
+
+var yoodlizesignup = (pageObject, firstname, lastname, email, password, month, day, year, gender, location, text, photo) => {
+    pageObject
+        /*
+        //   .click("@yoodlizesignup")
+        //    .waitForElementVisible('@btnSignUp')
+        // browser.windowMaximize()
+        //    .click('@btnSignUp')
+        //    .click('@inputFirstName')
+        //    .setValue('@inputFirstName', firstname)
+        //    .setValue('@inputLastName', lastname)
+        //   .click('@inputEmail')
+        //    .setValue('@inputEmail', email)
+        //    .click('@inputPassword')
+        //    .setValue('@inputPassword', password)
+        //    .click('@selectMonth')
+        //    .setValue('@selectMonth', month)
+        //    .click('@selectDay')
+        //    .setValue('@selectDay', day)
+        //    .click('@selectYear')
+        //  .setValue('@selectYear', year)
+        //   .click('@submitBtn')
+        */
+
+        .click('@yoodlizelogin')
+        .waitForElementVisible('@inputEmail')
+        .click('@inputEmail')
+        .setValue('@inputEmail', email)
+        .click('@inputPassword')
+        .setValue('@inputPassword', password)
+        .click('@submitBtn')
+        .waitForElementNotPresent('@myProfile')
+        .click('@myProfile')
+        .click('@editProfile')
+        .click('@selectGender')
+        .setValue('@selectGender', gender)
+        .click('@inputLocation')
+        .setValue('@inputLocation', location)
+        .click('@inputText')
+        .setValue('@inputText', text)
+        .click('@profilePhoto')
+        .click('@uploadPhoto')
+        .waitForElementVisible('@uploadPhoto', 1000)
+        .setValue('@uploadPhoto', require('path').resolve('@filePhoto'))
+
 
 }
-
-
 
 module.exports = {
     beforeEach: browser => {
         yoodlizePageObjects = browser.page.yoodlizePageObjects()
         yoodlizePageObjects.navigate()
+            .api.maximizeWindow()
     },
     after: browser => {
         browser.end()
     },
 
-    'Login and Renting an item': browser => {
-        yoodlizelogin(yoodlizePageObjects, 'cristian.gomessoares@gmail.com', 'cristian23', 'dog\ue007', '02/20/2019', '02/23/2019')
+    'Edti Profile': browser => {
+        yoodlizesignup(yoodlizePageObjects, 'cristiansoares23@gmail.com', 'cristian23', 'Male', 'Salt Lake City', 'I love myself', 'eu')
     },
+
+   /* 'Sign Up': browser => {
+        yoodlizesignup(yoodlizePageObjects, 'Cristian', 'Gomes Soares', '234cristian.gomessoares@hotmail.com', 'cristian23', '10', '4', '1983')
+    },*/
+
+
+   /* 'Login and Renting an item': browser => {
+        yoodlizelogin(yoodlizePageObjects, 'cristian.gomessoares@gmail.com', 'cristian23', 'dog\ue007', '02/20/2019', '02/23/2019')
+    },*/
+
+
 
     // 'Login': browser => {
     //     yoodlizePageObjects

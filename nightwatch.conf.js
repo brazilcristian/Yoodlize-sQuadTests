@@ -1,7 +1,7 @@
 const properties = require('./nightwatch.props')
 module.exports = {
-  "src_folders": "Yoodlize/Yoodlize Tests",
-  "page_objects_path": "Yoodlize/Yoodlize pageObjects",
+  "src_folders": "Yoodlize/YoodlizeTests",
+  "page_objects_path": "Yoodlize/YoodlizePageObjects",
 
   "selenium": {
     "start_process": true,

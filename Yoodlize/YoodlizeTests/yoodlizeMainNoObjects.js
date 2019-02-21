@@ -6,6 +6,20 @@ module.exports = {
         browser.end()
     },
 
+    'Sign up': browser => {
+        browser
+            .useXpath()
+            .click('//span[contains(text(), "Sign up")]')
+            .click('//span[contains(text(), "Sign up with Email")]')
+            .useCss()
+
+        browser
+            .click('input[name="firstName"]')
+            .setValue('input[name="firstName"]', 'Barack')
+            .click('input[name="lastName"]')
+            .setValue('input[name="firstName"]', 'Obama')    
+    },
+    
     'Login': browser => {
         browser
             .useXpath()
@@ -37,9 +51,10 @@ module.exports = {
             .click('button[class="Meetup-button-1IEeC Meetup-btnPrimary-3Fc0g btn btn-default"]')
             .useXpath()
             .expect.element('(//div)[1]').text.to.contain('Get ready to rent with Sarah').before(5000)
-            
 
-    
-            
- 
-}}
+
+
+
+
+    }
+}
